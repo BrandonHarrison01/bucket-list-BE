@@ -4,13 +4,13 @@ const helmet = require('helmet')
 
 const server = express()
 
-// const usersRouter = require('./users/users-route')
+const usersRouter = require('../users/users-route')
 
 server.use(helmet())
 server.use(cors())
 server.use(express.json())
 
-// server.use('/api', usersRouter)
+server.use('/api', usersRouter)
 
 server.get('/', (req, res) => {
     res.send('server is running')
