@@ -3,7 +3,8 @@ const db = require('../database/db-config')
 module.exports = {
     addUser,
     getUsers,
-    userLogin
+    userLogin,
+    editUser
 }
 
 function addUser(newUser) {
@@ -16,4 +17,15 @@ function userLogin(username) {
 
 function getUsers() {
     return db('users')
+}
+
+function editUser(id, newBody) {
+    return db('users')
+        .where({ id })
+        .update(newBody)
+        .then(newId => {
+            return db('users')
+                .where({ id })
+                .first()
+        })
 }

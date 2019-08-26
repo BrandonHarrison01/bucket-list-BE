@@ -1,5 +1,6 @@
 # 30for30-BE
 ---
+## Base Url: https://thirty-before-thirty-bw.herokuapp.com/
 
 ## AUTH ## Endpoints that return a token
 
@@ -27,3 +28,6 @@
         username: "test", 
         token: "generatedToken" 
         }
+
+## CRUD items
+

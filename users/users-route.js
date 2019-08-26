@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken')
 const Users = require('./users-model')
 const restricted = require('./authenticate-middleware')
 
+
+// REGISTER NEW USER
+
 router.post('/register', (req, res) => {
     const newUser = req.body;
     const hash = bcrypt.hashSync(newUser.password, 4)
@@ -14,6 +17,9 @@ router.post('/register', (req, res) => {
         .then(user => res.status(201).json(user))
         .catch(error => res.status(500).json(error))
 })
+
+
+// LOGIN
 
 router.post('/login', (req, res) => {
     const { username, password } = req.body
@@ -37,11 +43,30 @@ router.post('/login', (req, res) => {
     })
 })
 
+
+// GET ALL USERS
+
 router.get('/', restricted, (req, res) => {
     Users.getUsers()
         .then(result => res.status(200).json(result))
         .catch(error => res.status(500).json(error))
 })
+
+
+// UPDATE USER CREDS
+
+router.put('/update/:id', (req, res) => {
+    const {id} = req.params
+    const newBody = req.body
+    const hash = bcrypt.hashSync(newBody.password, 4)
+    newBody.password = hash
+
+    Users.editUser(id, newBody)
+        .then(result => res.status(200).json(result))
+
+})
+
+
 
 function getToken(user) {
     const payload = {
@@ -51,5 +76,6 @@ function getToken(user) {
     const secret = 'the secret'
     return jwt.sign(payload, secret)
 }
+
 
 module.exports = router;
