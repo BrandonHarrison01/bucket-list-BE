@@ -8,7 +8,7 @@ module.exports = {
     connection: {
       filename: './database/auth.db3'
     },
-    migratiions: {
+    migrations: {
       directory: './database/migrations'
     },
     seeds: {
