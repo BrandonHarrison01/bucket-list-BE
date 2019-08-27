@@ -17,7 +17,7 @@ server.use('/api', itemsRouter)
 server.use('/api/categories', categoriesRouter)
 
 server.get('/', (req, res) => {
-    res.send('server is running')
+    res.status(200).json({ api: 'running' })
 })
 
 module.exports = server;
