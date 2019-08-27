@@ -47,19 +47,31 @@
 
 ## Endpoints ##
 
----
 
 ## Bucket list items
 
 ### GET /api/items
 
-    -returns array of bucket list items associated with user token
+    -returns array of ALL bucket list items
 
+### GET /api/user-items
+
+    -returns array of all items associated with user token
+
+### POST /api/items
+
+    -input:
+        -name   -Required   -string
+        -description    -Required   -string
+        -category_id    -Required   -integer
+        -privacy    -Not Required   -boolean    // default to private   true === private, false === public
+        -complete   -Not Required   -boolean    // default to false
+        -date   -Not Required   -string
 ---
 
 ## Categories
 
-### PUT /api/categories
+### POST /api/categories
 
     -input:
         -category_name      -Required       -string
