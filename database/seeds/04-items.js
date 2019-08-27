@@ -11,7 +11,7 @@ exports.seed = function(knex) {
           user_id: 2,
           category_id: 1,
           privacy: true,
-          target_date: 2020-01-01
+          target_date: '2020-01-01'
         },
         {
           name: 'jump out of a tree', 
@@ -19,7 +19,7 @@ exports.seed = function(knex) {
           user_id: 3,
           category_id: 4,
           privacy: false,
-          target_date: 2020-01-02
+          target_date: '2020-01-02'
         },
         {
           name: 'something', 
@@ -27,7 +27,7 @@ exports.seed = function(knex) {
           user_id: 1,
           category_id: 2,
           privacy: false,
-          target_date: 2020-01-03
+          target_date: '2020-01-03'
         },
         {
           name: 'learn how to code', 
@@ -35,7 +35,7 @@ exports.seed = function(knex) {
           user_id: 1,
           category_id: 3,
           privacy: false,
-          target_date: 2020-01-03
+          target_date: '2020-01-03'
         },
         {
           name: 'plant a garden', 
@@ -43,7 +43,7 @@ exports.seed = function(knex) {
           user_id: 2,
           category_id: 4,
           privacy: false,
-          target_date: 2020-01-03
+          target_date: '2020-01-03'
         },
         {
           name: 'win the lottery', 
@@ -51,7 +51,7 @@ exports.seed = function(knex) {
           user_id: 3,
           category_id: 1,
           privacy: true,
-          target_date: 2020-01-03
+          target_date: '2020-01-03'
         }
       ]);
     });
