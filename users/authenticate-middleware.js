@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
             if(err) {
                 res.status(401).json({ message: 'bad token' })
             } else {
-                console.log(decodedToken, 'dt')
+                // console.log(decodedToken, 'dt')
                 req.user = decodedToken
                 next();
             }

@@ -6,7 +6,7 @@ const restricted = require('../users/authenticate-middleware')
 
 router.get('/items', restricted, (req, res) => {
     console.log(req.user, 'user')
-    const id = req.user.subject
+    const { id } = req.user
 
     Items.getItems(id)
         .then(result => res.status(200).json(result))
