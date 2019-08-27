@@ -4,6 +4,8 @@ const Items = require('./items-model')
 const restricted = require('../users/authenticate-middleware')
 
 
+// GET ITEMS
+
 router.get('/items', restricted, (req, res) => {
     console.log(req.user, 'user')
     const { id } = req.user

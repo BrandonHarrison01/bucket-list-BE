@@ -2,7 +2,7 @@
 ---
 ## Base Url: https://thirty-before-thirty-bw.herokuapp.com/
 
-## AUTH ## Endpoints that return a token
+## AUTH Endpoints
 
 ### POST /auth/register
 
@@ -43,11 +43,40 @@
             password:
         }
 
+---
+
 ## Endpoints ##
+
+---
+
+## Bucket list items
 
 ### GET /api/items
 
     -returns array of bucket list items associated with user token
+
+---
+
+## Categories
+
+### PUT /api/categories
+
+    -input:
+        -category_name      -Required       -string
+
+    -returns
+        {
+            id:
+            category_name
+        }
+
+### GET /api/categories
+
+    -returns array of categories
+
+### DELETE /api/categories/:id
+
+---
 
 ## Seeded users ##
 

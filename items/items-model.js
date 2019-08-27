@@ -2,6 +2,7 @@ const db = require('../database/db-config')
 
 module.exports = {
     getItems,
+    
 }
 
 function getItems(id) {
