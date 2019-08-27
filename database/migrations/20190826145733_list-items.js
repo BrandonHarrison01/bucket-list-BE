@@ -12,7 +12,6 @@ exports.up = function(knex) {
             .notNullable()
         tbl
             .string('description')
-            .notNullable()
         tbl
             .integer('user_id')
             .unsigned()

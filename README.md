@@ -58,15 +58,34 @@
 
     -returns array of all items associated with user token
 
+### GET /api/item/:id
+
+    -returns item associated with id
+
 ### POST /api/items
 
     -input:
-        -name   -Required   -string
-        -description    -Required   -string
-        -category_id    -Required   -integer
-        -privacy    -Not Required   -boolean    // default to private   true === private, false === public
-        -complete   -Not Required   -boolean    // default to false
-        -date   -Not Required   -string
+        -name           -Required       -string
+        -description    -Not Required   -string
+        -category_id    -Required       -integer
+        -privacy        -Not Required   -boolean  // default to private | true === private, false === public
+        -complete       -Not Required   -boolean  // default to false
+        -date           -Not Required   -string
+
+### PUT /api/update-item/:id
+
+    -input:
+        -name           -Required       -string
+        -description    -Not Required   -string
+        -category_id    -Required       -integer
+        -privacy        -Not Required   -boolean  // default to private | true === private, false === public
+        -complete       -Not Required   -boolean  // default to false
+        -date           -Not Required   -string
+
+    -returns updated list item
+
+### DELETE /api/remove-item/:id
+
 ---
 
 ## Categories

@@ -63,7 +63,7 @@ router.put('/update/:id', (req, res) => {
 
     Users.editUser(id, newBody)
         .then(result => res.status(200).json(result))
-
+        .catch(error => res.status(500).json(error))
 })
 
 
