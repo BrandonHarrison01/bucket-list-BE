@@ -11,15 +11,15 @@ exports.up = function(knex) {
             .notNullable()
     })
 
-    .createTable('users_categories', tbl => {
+    .createTable('items_categories', tbl => {
         tbl.increments();
 
         tbl
-            .integer('user_id')
+            .integer('cats_id')
             .unsigned()
             .notNullable()
             .references('id')
-            .inTable('users')
+            .inTable('items')
             .onDelete('RESTRICT')
             .onUpdate('CASCADE')
         tbl

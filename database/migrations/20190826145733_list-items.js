@@ -14,6 +14,14 @@ exports.up = function(knex) {
             .string('description')
             .notNullable()
         tbl
+            .integer('user_id')
+            .unsigned()
+            .notNullable()
+            .references('id')
+            .inTable('users')
+            .onDelete('RESTRICT')
+            .onUpdate('CASCADE')
+        tbl
             .integer('category_id')
             .unsigned()
             .notNullable()
@@ -23,7 +31,7 @@ exports.up = function(knex) {
             .onUpdate('CASCADE')
         tbl
             .boolean('privacy')
-            .defaultTo(false)
+            .defaultTo(true)
         tbl
             .boolean('complete')
             .defaultTo(false)
@@ -33,5 +41,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    dropTableIfExists('items')
+    return knex.schema.dropTableIfExists('items')
 };

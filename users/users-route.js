@@ -70,11 +70,14 @@ router.put('/update/:id', (req, res) => {
 
 function getToken(user) {
     const payload = {
-        subject: user.id,
+        id: user.id,
         username: user.username
     }
+    const options = {
+        expiresIn: '1d'
+    }
     const secret = 'the secret'
-    return jwt.sign(payload, secret)
+    return jwt.sign(payload, secret, options)
 }
 
 

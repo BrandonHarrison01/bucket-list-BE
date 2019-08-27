@@ -29,5 +29,40 @@
         token: "generatedToken" 
         }
 
-## CRUD items
 
+### PUT /auth/update/:id
+
+    -input:
+        -username       -Required       -string
+        -password       -Required       -string
+
+    -returns
+        {
+            id:
+            username:
+            password:
+        }
+
+## Endpoints ##
+
+### GET /api/items
+
+    -returns array of bucket list items associated with user token
+
+## Seeded users ##
+
+    {
+        username: steve,
+        password: 1234
+    }
+
+    {
+        username: bob,
+        password: 1234
+    }
+
+    {
+        username: mike,
+        password: 1234
+    }
+    
