@@ -38,7 +38,6 @@ router.post('/register', validateUser, (req, res) => {
             const found = arr.find(function(element) {
                 return element == newUser.username
             })
-            console.log(found)
 
             if (found) {
                 res.status(400).json({ message: 'username is unavailable' })
