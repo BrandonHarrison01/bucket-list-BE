@@ -90,11 +90,20 @@ router.get('/item/:id', restricted, checkId, (req, res) => {
 
 router.put('/update-item/:id', restricted, checkId, checkBody, (req, res) => {
     const { id } = req.params
+    const userId = req.user.id
     const newBody = req.body
+    console.log(userId, 'userid')
 
-    Items.editItem(id, newBody)
-        .then(result => res.status(200).json(result))
-        .catch(error => res.status(500).json(error))
+    Items.getItemById(id)
+        .then(item => {
+            if (item.user_id === userId) {
+                Items.editItem(id, newBody)
+                    .then(result => res.status(200).json(result))
+                    .catch(error => res.status(500).json(error))
+            } else {
+                res.status(400).json({ message: 'user can only edit item with corresponding user id' })
+            }
+        })
 })
 
 
