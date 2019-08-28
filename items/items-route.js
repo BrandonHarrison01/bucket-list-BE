@@ -4,9 +4,38 @@ const Items = require('./items-model')
 const restricted = require('../users/authenticate-middleware')
 
 
+// MIDDLEWARES
+
+// verify body
+
+function checkBody(req, res, next) {
+    if (!req.body.name) {
+        res.status(400).json({ message: 'missing required name field' })
+    } else if (!req.body.category_id) {
+        res.status(400).json({ message: 'missing requires category_id' })
+    } else {
+        next()
+    }
+}
+
+// check id
+
+function checkId(req, res, next) {
+    const { id } = req.params
+    Items.getItemById(id)
+        .then(result => {
+            if (result) {
+                next()
+            } else {
+                res.status(400).json({ message: 'invalid item id' })
+            }
+            console.log(result, 'result')})
+}
+
+
 // CREATE NEW ITEM
 
-router.post('/items', restricted, (req, res) => {
+router.post('/items', restricted, checkBody, (req, res) => {
     const newItem = req.body
     const { id } = req.user
     // console.log(newItem, 'new item')
@@ -49,7 +78,7 @@ router.get('/user-items', restricted, (req, res) => {
 
 // READ ITEM BY ID
 
-router.get('/item/:id', restricted, (req, res) => {
+router.get('/item/:id', restricted, checkId, (req, res) => {
     const { id } = req.params
 
     Items.getItemById(id)
@@ -59,7 +88,7 @@ router.get('/item/:id', restricted, (req, res) => {
 
 // UPDATE ITEM
 
-router.put('/update-item/:id', restricted, (req, res) => {
+router.put('/update-item/:id', restricted, checkId, checkBody, (req, res) => {
     const { id } = req.params
     const newBody = req.body
 
@@ -71,7 +100,7 @@ router.put('/update-item/:id', restricted, (req, res) => {
 
 // DELETE ITEM
 
-router.delete('/remove-item/:id', restricted, (req, res) => {
+router.delete('/remove-item/:id', restricted, checkId, (req, res) => {
     const { id } = req.params
 
     Items.deleteItem(id)
