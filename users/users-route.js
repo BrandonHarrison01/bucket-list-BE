@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken')
 
 const Users = require('./users-model')
 const restricted = require('./authenticate-middleware')
+const secrets = require('../config/secrets')
 
 
 // MIDDLEWARES
@@ -109,8 +110,7 @@ function getToken(user) {
     const options = {
         expiresIn: '1d'
     }
-    const secret = 'the secret'
-    return jwt.sign(payload, secret, options)
+    return jwt.sign(payload, secrets.jwtSecret, options)
 }
 
 
