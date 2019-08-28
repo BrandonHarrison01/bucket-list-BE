@@ -6,22 +6,56 @@ const Users = require('./users-model')
 const restricted = require('./authenticate-middleware')
 
 
+// MIDDLEWARES
+
+// validate user creds
+
+function validateUser(req, res, next) {
+    if (Object.keys(req.body).length <= 0) {
+        res.status(400).json({ message: 'missing username and password' })
+    } else if (!req.body.username) {
+        res.status(400).json({ message: 'missing required username field' })
+    } else if (!req.body.password) {
+        res.status(400).json({ message: 'missing required password field'})
+    } else {
+        next()
+    }
+}
+
+
+// ENDPOINTS
+
 // REGISTER NEW USER
 
-router.post('/register', (req, res) => {
+router.post('/register', validateUser, (req, res) => {
     const newUser = req.body;
     const hash = bcrypt.hashSync(newUser.password, 4)
     newUser.password = hash
 
-    Users.addUser(newUser)
-        .then(user => res.status(201).json(user))
+    Users.getUsers()
+        .then(users => {
+            const arr = users.map(user => user.username)
+            const found = arr.find(function(element) {
+                return element == newUser.username
+            })
+            console.log(found)
+
+            if (found) {
+                res.status(400).json({ message: 'username is unavailable' })
+            } else {
+                Users.addUser(newUser)
+                    .then(user => {
+                        res.status(201).json(user)
+                    })
+            }
+        })
         .catch(error => res.status(500).json(error))
 })
 
 
 // LOGIN
 
-router.post('/login', (req, res) => {
+router.post('/login', validateUser, (req, res) => {
     const { username, password } = req.body
 
     Users.userLogin(username)
@@ -55,7 +89,7 @@ router.get('/', restricted, (req, res) => {
 
 // UPDATE USER CREDS
 
-router.put('/update/:id', (req, res) => {
+router.put('/update/:id', validateUser, (req, res) => {
     const {id} = req.params
     const newBody = req.body
     const hash = bcrypt.hashSync(newBody.password, 4)
