@@ -45,7 +45,7 @@ router.post('/register', validateUser, (req, res) => {
             } else {
                 Users.addUser(newUser)
                     .then(user => {
-                        res.status(201).json(user)
+                        res.status(201).json(user[0])
                     })
             }
         })
