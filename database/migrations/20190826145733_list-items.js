@@ -8,10 +8,10 @@ exports.up = function(knex) {
         tbl.increments();
 
         tbl
-            .string('name')
+            .text('name')
             .notNullable()
         tbl
-            .string('description')
+            .text('description')
         tbl
             .integer('user_id')
             .unsigned()

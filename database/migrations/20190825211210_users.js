@@ -6,11 +6,11 @@ exports.up = function(knex) {
           tbl.increments(); 
 
           tbl
-              .string('username', 15)
+              .text('username', 255)
               .notNullable()
               .unique();
           tbl
-              .string('password', 15)
+              .text('password', 255)
               .notNullable();
     })
 

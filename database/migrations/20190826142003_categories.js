@@ -7,7 +7,7 @@ exports.up = function(knex) {
         tbl.increments();
 
         tbl
-            .string('category_name')
+            .text('category_name')
             .notNullable()
     })
 

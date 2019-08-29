@@ -32,16 +32,30 @@ function checkId(req, res, next) {
             console.log(result, 'result')})
 }
 
+// check body for properties
+
+function bodyProps(req, res, next) {
+    const propCheck = req.body
+
+    console.log(Object.keys(propCheck).length)
+    if (Object.keys(propCheck).length < 7) {
+        next()
+    } else {
+        res.status(400).json({ message: 'server can only post object with property keys of: name, category_id, complete, description, privacy, target_date'})
+    }
+}
+
 
 // CREATE NEW ITEM
 
-router.post('/items', restricted, checkBody, (req, res) => {
+router.post('/items', bodyProps, restricted, checkBody, (req, res) => {
     const newItem = req.body
     const { id } = req.user
     // console.log(newItem, 'new item')
 
     Items.addItem(newItem, id)
         .then(result => res.status(201).json(result))
+        // .then(result => res.send('send it'))
         .catch(error => res.status(500).json(error))
 })
 
