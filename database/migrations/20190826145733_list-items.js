@@ -35,7 +35,7 @@ exports.up = function(knex) {
             .boolean('complete')
             .defaultTo(false)
         tbl
-            .date('target_date')
+            .text('target_date')
     })
 };
 
