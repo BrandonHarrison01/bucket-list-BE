@@ -6,7 +6,7 @@ exports.seed = function(knex) {
       // Inserts seed entries
       return knex('items').insert([
         {
-          name: 'rescue a kitten',
+          item_name: 'rescue a kitten',
           description: 'a description',
           user_id: 2,
           category_id: 1,
@@ -14,7 +14,7 @@ exports.seed = function(knex) {
           target_date: '2020-01-01'
         },
         {
-          name: 'jump out of a tree', 
+          item_name: 'jump out of a tree', 
           description: 'a description',
           user_id: 3,
           category_id: 4,
@@ -22,7 +22,7 @@ exports.seed = function(knex) {
           target_date: '2020-01-02'
         },
         {
-          name: 'something', 
+          item_name: 'something', 
           description: 'a description',
           user_id: 1,
           category_id: 2,
@@ -30,7 +30,7 @@ exports.seed = function(knex) {
           target_date: '2020-01-03'
         },
         {
-          name: 'learn how to code', 
+          item_name: 'learn how to code', 
           description: 'a description',
           user_id: 1,
           category_id: 3,
@@ -38,7 +38,7 @@ exports.seed = function(knex) {
           target_date: '2020-01-03'
         },
         {
-          name: 'plant a garden', 
+          item_name: 'plant a garden', 
           description: 'a description',
           user_id: 2,
           category_id: 4,
@@ -46,7 +46,7 @@ exports.seed = function(knex) {
           target_date: '2020-01-03'
         },
         {
-          name: 'win the lottery', 
+          item_name: 'win the lottery', 
           description: 'a description',
           user_id: 3,
           category_id: 1,

@@ -9,7 +9,7 @@ const restricted = require('../users/authenticate-middleware')
 // verify body
 
 function checkBody(req, res, next) {
-    if (!req.body.name) {
+    if (!req.body.item_name) {
         res.status(400).json({ message: 'missing required name field' })
     } else if (!req.body.category_id) {
         res.status(400).json({ message: 'missing requires category_id' })
@@ -102,7 +102,7 @@ router.get('/item/:id', restricted, checkId, (req, res) => {
 
 // UPDATE ITEM
 
-router.put('/update-item/:id', restricted, checkId, checkBody, (req, res) => {
+router.put('/update-item/:id', restricted, checkId, checkBody, bodyProps, (req, res) => {
     const { id } = req.params
     const userId = req.user.id
     const newBody = req.body
