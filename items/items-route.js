@@ -10,7 +10,7 @@ const restricted = require('../users/authenticate-middleware')
 
 function checkBody(req, res, next) {
     if (!req.body.item_name) {
-        res.status(400).json({ message: 'missing required name field' })
+        res.status(400).json({ message: 'missing required item_name field' })
     } else if (!req.body.category_id) {
         res.status(400).json({ message: 'missing requires category_id' })
     } else {
