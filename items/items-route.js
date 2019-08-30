@@ -41,7 +41,7 @@ function bodyProps(req, res, next) {
     if (Object.keys(propCheck).length < 7) {
         next()
     } else {
-        res.status(400).json({ message: 'server can only post object with property keys of: name, category_id, complete, description, privacy, target_date'})
+        res.status(400).json({ message: 'server can only post object with property keys of: item_name, category_id, complete, description, privacy, target_date'})
     }
 }
 

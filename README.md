@@ -65,12 +65,12 @@
 ### POST /api/items
 
     -input:
-        -item_name           -Required       -string
+        -item_name      -Required       -string
         -description    -Not Required   -string
         -category_id    -Required       -integer
         -privacy        -Not Required   -boolean  // default to private | true === private, false === public
         -complete       -Not Required   -boolean  // default to false
-        -target_date           -Not Required   -string
+        -target_date    -Not Required   -string
 
 ### PUT /api/update-item/:id
 
