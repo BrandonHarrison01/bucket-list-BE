@@ -1,3 +1,4 @@
+const { select } = require('../database/db-config')
 const db = require('../database/db-config')
 
 module.exports = {
@@ -17,7 +18,7 @@ function userLogin(username) {
 }
 
 function getUsers() {
-    return db('users')
+    return db('users').select('username')
 }
 
 function editUser(id, newBody) {
